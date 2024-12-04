@@ -1,0 +1,38 @@
+# Flutter/Dart/Pub related
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+
+# Android related
+*.jks
+android/.cxx/
+android/app/debug/
+android/app/profile/
+android/app/release/
+
+# iOS related
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/Flutter/Generated.xcconfig
+ios/Flutter/App.framework
+ios/.symlinks/
+ios/Pods/
+*.xcworkspace
+!ios/Podfile.lock
+
+# Visual Studio Code
+.vscode/
+
+# IntelliJ related
+*.iml
+.idea/
+
+# MacOS
+.DS_Store
+
+# Others
+*.log
