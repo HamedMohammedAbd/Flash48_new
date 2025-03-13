@@ -13,5 +13,7 @@ Future<bool> checkInternet() async {
   } on SocketException {
     // في حال حدوث استثناء (لا يوجد اتصال)
     return false;
+  } catch (_) {
+    return false;
   }
 }

@@ -16,10 +16,14 @@ abstract class MainHomeController extends GetxController {
   goToMenuPage();
   goToProductDetailsPage();
   getActivitiesData();
+  getStrongerOffers();
+  getOffers();
 }
 
 class MainHomeControllerImp extends MainHomeController {
   List<ActivitiesModel> activities = [];
+  List<ActivitiesModel> offers = [];
+  List<ActivitiesModel> stongersOffers = [];
   MyServices myServices = Get.find();
   late StatusRequest statusRequest;
   GetData getActivities = GetData(Get.find());
@@ -30,6 +34,8 @@ class MainHomeControllerImp extends MainHomeController {
 
     await Future.wait([
       getActivitiesData(),
+      getStrongerOffers(),
+      getOffers(),
     ]);
   }
 
@@ -67,6 +73,66 @@ class MainHomeControllerImp extends MainHomeController {
       if (response["data"]["icon"] == "success") {
         List data = response["data"]["data"];
         activities.addAll(
+          data.map(
+            (e) => ActivitiesModel.fromJson(e),
+          ),
+        );
+      } else {
+        print("error data ============ ");
+      }
+    }
+
+    if (statusRequest == StatusRequest.success) {
+    } else {
+      print("error ===============");
+    }
+
+    update();
+  }
+
+  @override
+  Future<void> getOffers() async {
+    statusRequest = StatusRequest.loading;
+    var response = await getActivities.getData(
+      map: {},
+      api: AppApi.getActivitiesData,
+      reqType: false,
+    );
+    statusRequest = await handlingData(response);
+    if (statusRequest == StatusRequest.success) {
+      if (response["data"]["icon"] == "success") {
+        List data = response["data"]["data"];
+        offers.addAll(
+          data.map(
+            (e) => ActivitiesModel.fromJson(e),
+          ),
+        );
+      } else {
+        print("error data ============ ");
+      }
+    }
+
+    if (statusRequest == StatusRequest.success) {
+    } else {
+      print("error ===============");
+    }
+
+    update();
+  }
+
+  @override
+  Future<void> getStrongerOffers() async {
+    statusRequest = StatusRequest.loading;
+    var response = await getActivities.getData(
+      map: {},
+      api: AppApi.getActivitiesData,
+      reqType: false,
+    );
+    statusRequest = await handlingData(response);
+    if (statusRequest == StatusRequest.success) {
+      if (response["data"]["icon"] == "success") {
+        List data = response["data"]["data"];
+        stongersOffers.addAll(
           data.map(
             (e) => ActivitiesModel.fromJson(e),
           ),

@@ -10,9 +10,11 @@ class OffersPageControllerImp extends OffersPageController {
   late String appBarTitle;
   NavHomeScreenPageControllerImp controller =
       Get.put(NavHomeScreenPageControllerImp());
+  List offers = [];
   @override
   void onInit() {
     appBarTitle = controller.myOfferName;
+
     super.onInit();
   }
 

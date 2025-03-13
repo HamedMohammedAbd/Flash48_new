@@ -77,7 +77,7 @@ class LoginPageControllerImp extends LoginPageController {
 
   @override
   login() async {
-    // goToHomePage();
+    goToHomePage();
     // adminUserModel = AdminUserModel.fromJson({
     //   "user_id": 1,
     //   "user_name": "admintest",
@@ -127,51 +127,51 @@ class LoginPageControllerImp extends LoginPageController {
     // }
 
     // update();
-    statusRequest = StatusRequest.loading;
-    update(); // تحديث الواجهة لإظهار حالة التحميل
+    // statusRequest = StatusRequest.loading;
+    // update(); // تحديث الواجهة لإظهار حالة التحميل
 
-    var response = await getDataLogin.getData(
-      map: {
-        "email": usernameController.text.toLowerCase().trim(),
-        "password": passwordController.text.trim(),
-      },
-      api: AppApi.loginaAPI,
-    );
+    // var response = await getDataLogin.getData(
+    //   map: {
+    //     "email": usernameController.text.toLowerCase().trim(),
+    //     "password": passwordController.text.trim(),
+    //   },
+    //   api: AppApi.loginaAPI,
+    // );
 
-    statusRequest = handlingData(response);
-    update(); // تحديث الواجهة بعد معالجة البيانات
+    // statusRequest = handlingData(response);
+    // update(); // تحديث الواجهة بعد معالجة البيانات
 
-    if (statusRequest == StatusRequest.success) {
-      final responseData = response["data"];
-      if (responseData["icon"] == "success") {
-        final userData = responseData["data"]["user"];
-        final token = responseData["data"]["token"].toString();
+    // if (statusRequest == StatusRequest.success) {
+    //   final responseData = response["data"];
+    //   if (responseData["icon"] == "success") {
+    //     final userData = responseData["data"]["user"];
+    //     final token = responseData["data"]["token"].toString();
 
-        print(userData);
-        print(token);
+    //     print(userData);
+    //     print(token);
 
-        myServices.sharedPreferences.setString("token", token);
-        if (userData["userType"] == "seller") {
-          adminUserModel = AdminUserModels.fromJson(userData);
-          storageUserData(null, adminUserModel);
-        } else {
-          normalUserModel = NormalUserModel.fromJson(userData);
-          storageUserData(normalUserModel, null);
-        }
+    //     myServices.sharedPreferences.setString("token", token);
+    //     if (userData["userType"] == "seller") {
+    //       adminUserModel = AdminUserModels.fromJson(userData);
+    //       storageUserData(null, adminUserModel);
+    //     } else {
+    //       normalUserModel = NormalUserModel.fromJson(userData);
+    //       storageUserData(normalUserModel, null);
+    //     }
 
-        goToHomePage();
-      } else {
-        Get.snackbar("خطأ", responseData["data"].toString());
-      }
-    } else {
-      snackbarFunction(
-        "خطأ",
-        "$response",
-      );
-      print("===============================================login");
-      print("StatusRequest: $statusRequest");
-    }
+    //     goToHomePage();
+    //   } else {
+    //     Get.snackbar("خطأ", responseData["data"].toString());
+    //   }
+    // } else {
+    //   snackbarFunction(
+    //     "خطأ",
+    //     "$response",
+    //   );
+    //   print("===============================================login");
+    //   print("StatusRequest: $statusRequest");
+    // }
 
-    update(); // تحديث الواجهة بعد انتهاء العملية
+    // update(); // تحديث الواجهة بعد انتهاء العملية
   }
 }
