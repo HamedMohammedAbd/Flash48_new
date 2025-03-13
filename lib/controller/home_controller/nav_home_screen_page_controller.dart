@@ -38,13 +38,13 @@ class NavHomeScreenPageControllerImp extends NavHomeScreenPageController {
 
   @override
   void onInit() {
-    firstLeft = icons.length > 4
-        ? (width(icons.length + 0.0) - width((icons.length + 0.0) + 0.5)) / 2.0
-        : (width(icons.length + 0.0) - width(5 + 0.0)) / 2.0;
-    left = firstLeft;
     raduis = icons.length > 4 ? width((icons.length + 0.0) * 2 + 2) : width(10);
     raduis2 =
         icons.length > 4 ? width((icons.length + 0.0) * 2 + 4) : width(12);
+    firstLeft = icons.length > 4
+        ? (((width(icons.length + 0.0) - raduis) / 2.0) / 2) / 2
+        : (width(icons.length + 0.0) - width(icons.length + 0.0)) / 2.0;
+    left = firstLeft;
     super.onInit();
   }
 

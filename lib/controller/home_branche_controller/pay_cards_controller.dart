@@ -1,9 +1,19 @@
+// ignore_for_file: avoid_print
+
 import 'package:test_test/core/constant/app_image.dart';
 import 'package:test_test/core/constant/app_route.dart';
 import 'package:get/get.dart';
 
+import '../../core/class/status_request.dart';
+import '../../core/constant/app_Api.dart';
+import '../../core/function/handling_data.dart';
+import '../../data/data_source/remote/get_data.dart';
+import '../../data/model/cards_models.dart';
+import '../../services/my_service.dart';
+
 abstract class PayCardsController extends GetxController {
   goToCardDetailsPage(String title);
+  getCardData();
 }
 
 class PayCardsControllerImp extends PayCardsController {
@@ -12,48 +22,15 @@ class PayCardsControllerImp extends PayCardsController {
     AppImage.payNowImage,
     AppImage.payServiceImage,
   ];
-  List<Map<String, dynamic>> cards = <Map<String, dynamic>>[
-    {
-      "title": "دلعني",
-      "time": 3,
-      "price": 99,
-      "subtitle": [
-        "تصميم الاعلان من فريق متخصص",
-        "تصميم الاعلان من فريق متخصص",
-      ],
-    },
-    {
-      "title": "أنا بكيفي",
-      "time": 3,
-      "price": 199,
-      "subtitle": [
-        "تصميم الاعلان من فريق متخصص",
-        "تصميم الاعلان من فريق متخصص",
-      ],
-    },
-    {
-      "title": "ميزني",
-      "time": 5,
-      "price": 499,
-      "subtitle": [
-        "تصميم الاعلان من فريق متخصص",
-        "تصميم الاعلان من فريق متخصص",
-        "تصميم الاعلان من فريق متخصص",
-        "تصميم الاعلان من فريق متخصص",
-        "تصميم الاعلان من فريق متخصص",
-        "تصميم الاعلان من فريق متخصص",
-      ],
-    },
-    {
-      "title": "الاسر المنتجة",
-      "time": 3,
-      "price": 49,
-      "subtitle": [
-        "تصميم الاعلان من فريق متخصص",
-        "تصميم الاعلان من فريق متخصص",
-      ],
-    },
-  ];
+  List<CardsModels> cards = [];
+  MyServices myServices = Get.find();
+  late StatusRequest statusRequest;
+  GetData getCardDetails = GetData(Get.find());
+  @override
+  void onInit() {
+    getCardData();
+    super.onInit();
+  }
 
   @override
   goToCardDetailsPage(String title) {
@@ -63,5 +40,35 @@ class PayCardsControllerImp extends PayCardsController {
         "title": title,
       },
     );
+  }
+
+  @override
+  getCardData() async {
+    statusRequest = StatusRequest.loading;
+    var response = await getCardDetails.getData(
+      map: {},
+      api: AppApi.getAllCards,
+      reqType: false,
+    );
+    statusRequest = handlingData(response);
+    if (statusRequest == StatusRequest.success) {
+      if (response["data"]["icon"] == "success") {
+        List data = response["data"]["data"];
+        cards.addAll(
+          data.map(
+            (e) => CardsModels.fromJson(e),
+          ),
+        );
+      } else {
+        print("error data ============ ");
+      }
+    }
+
+    if (statusRequest == StatusRequest.success) {
+    } else {
+      print("error ===============");
+    }
+
+    update();
   }
 }

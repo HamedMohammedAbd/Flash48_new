@@ -1,5 +1,3 @@
-
-
 import '../class/status_request.dart';
 
 handlingData(response) {

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../core/constant/app_color.dart';
 import '../../../core/constant/app_font_size.dart';
-import '../../../core/constant/app_image.dart';
 import '../../../core/function/height.dart';
 import '../../../core/function/width.dart';
 import '../public_widget/button_custom.dart';
@@ -10,9 +9,10 @@ import '../public_widget/text_custom.dart';
 
 class CardDesign extends StatelessWidget {
   final String title;
-  final List<dynamic> subtitle;
+  final String subtitle;
   final void Function() onPressed;
-  final int price, time;
+  final double price;
+  final int time;
 
   const CardDesign({
     super.key,
@@ -130,40 +130,8 @@ class CardDesign extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      ...List.generate(
-                        subtitle.length > 3 ? 3 : subtitle.length,
-                        (index) {
-                          return Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                margin: EdgeInsets.only(
-                                  top: height(150),
-                                ),
-                                child: CircleAvatar(
-                                  backgroundColor: AppColor.whiteColor,
-                                  radius: width(78),
-                                  child: Image.asset(
-                                    AppImage.confirm,
-                                    fit: BoxFit.fill,
-                                    color: AppColor.primaryColor,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                width: width(40),
-                              ),
-                              TextCustom(
-                                text: subtitle[0].toString(),
-                                fontSize: AppFontSize.size12,
-                              ),
-                            ],
-                          );
-                        },
-                      ),
-                    ],
+                  child: FittedBox(
+                    child: TextCustom(text: subtitle),
                   ),
                 ),
                 Positioned(

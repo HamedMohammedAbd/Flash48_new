@@ -9,7 +9,7 @@ validationFunction({
   String? confirmPassword,
 }) {
   if (value.trim().isEmpty) {
-    return "can'tBeEmpty".tr;
+    return "لا يمكن ان يمكون الحقل فارغ";
   }
   if (type == "username") {
     if (!GetUtils.isUsername(value)) {

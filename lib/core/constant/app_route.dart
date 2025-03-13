@@ -19,4 +19,6 @@ class AppRoute {
   static const String editPersonalData = "/editPersonalData";
   static const String talkWithUsPage = "/talkWithUsPage";
   static const String addOffers = "/addOffers";
+  static const String addNewProduct = "/addNewProduct";
+  static const String citiesPages = "/citiesPages";
 }

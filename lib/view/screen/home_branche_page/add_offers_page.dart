@@ -1,4 +1,8 @@
+// ignore_for_file: avoid_print
+
+import 'package:get/get.dart';
 import 'package:test_test/core/constant/app_font_size.dart';
+import 'package:test_test/core/constant/app_route.dart';
 import 'package:test_test/core/function/height.dart';
 import 'package:test_test/core/function/width.dart';
 import 'package:test_test/view/widget/public_widget/button_custom.dart';
@@ -36,7 +40,17 @@ class AddOffersPage extends StatelessWidget {
                     ),
                     ButtonCustom(
                       text: "إضافة عرض",
-                      onPressed: () {},
+                      onPressed: () {
+                        try {
+                          print("============== error");
+                          Get.toNamed(AppRoute.addNewProduct);
+                          print("============== error");
+                        } catch (e) {
+                          print("========================");
+                          print(e.toString);
+                          print("========================");
+                        }
+                      },
                       height: AppFontSize.sizeHieght40,
                       width: AppFontSize.sizeWidth181,
                     ),

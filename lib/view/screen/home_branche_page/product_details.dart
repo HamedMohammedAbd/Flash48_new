@@ -19,6 +19,7 @@ class ProductDetails extends GetView<ProductDetailsControllerImp> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
+          spacing: width(50),
           children: [
             Stack(
               children: [
@@ -82,8 +83,10 @@ class ProductDetails extends GetView<ProductDetailsControllerImp> {
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                spacing: width(50),
                 children: [
                   Row(
+                    spacing: width(50),
                     children: [
                       const TextCustom(text: "35m"),
                       Image.asset(
@@ -96,33 +99,21 @@ class ProductDetails extends GetView<ProductDetailsControllerImp> {
                         backgroundColor: AppColor.primaryColor,
                         radius: width(55.7),
                       ),
-                      SizedBox(
-                        width: width(50),
-                      ),
                       CircleAvatar(
                         backgroundColor: AppColor.primaryColor,
                         radius: width(55.7),
                       ),
                     ],
                   ),
-                  SizedBox(
-                    height: width(50),
-                  ),
                   TextCustom(
                     text: "تفاصيل عنها :",
                     fontSize: AppFontSize.size13,
-                  ),
-                  SizedBox(
-                    height: width(50),
                   ),
                   TextCustom(
                     text:
                         "بلوزة صوف شتوية متوفرة بعدة الوان و عدة احجام مع تنورة تأتي كطقم واحد",
                     fontSize: AppFontSize.size12,
                     fontWeight: FontWeight.w400,
-                  ),
-                  SizedBox(
-                    height: width(50),
                   ),
                   GetBuilder<ProductDetailsControllerImp>(
                       init: ProductDetailsControllerImp(),
@@ -187,27 +178,30 @@ class ProductDetails extends GetView<ProductDetailsControllerImp> {
                         );
                       }),
                   SizedBox(
-                    height: height(40),
+                    width: width(50),
                   ),
                   Center(
                     child: ButtonCustom(
                       text: "الأستفادة من العرض",
                       onPressed: () {},
-                      height: height(19.114),
-                      width: width(1.7),
+                      height: AppFontSize.sizeHieght40,
+                      width: AppFontSize.sizeWidth181,
                     ),
                   ),
-                  SizedBox(
-                    height: height(80),
+                  Center(
+                    child: ButtonCustom(
+                      text: "المزيد لنفس المستخدم",
+                      onPressed: () => controller.userDetails(),
+                      height: AppFontSize.sizeHieght40,
+                      width: AppFontSize.sizeWidth181,
+                    ),
                   ),
                   Center(
                     child: ButtonCustom(
                       text: "الرجوع  للعروض",
-                      onPressed: () {
-                        controller.backForwoardPage();
-                      },
-                      height: height(19.114),
-                      width: width(1.7),
+                      onPressed: () => controller.backForwoardPage(),
+                      height: AppFontSize.sizeHieght40,
+                      width: AppFontSize.sizeWidth181,
                     ),
                   ),
                   Container(

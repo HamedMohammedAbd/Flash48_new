@@ -26,6 +26,12 @@ class NavHomeScreenPage extends StatelessWidget {
                       child: Container(
                         decoration: const BoxDecoration(
                           color: AppColor.primaryColor,
+                          // border: Border(
+                          //   left: BorderSide(
+                          //     width: 1,
+                          //     color: AppColor.backColor,
+                          //   ),
+                          // ),
                         ),
                         height: height(15),
                         child: controller.firstIndex != index

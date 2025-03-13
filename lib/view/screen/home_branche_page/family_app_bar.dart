@@ -59,14 +59,14 @@ class FamilyAppBar extends StatelessWidget {
                 margin: EdgeInsets.symmetric(
                   horizontal: width(40),
                 ),
-                height: height(30),
+                height: height(25),
                 child:
                     GetBuilder<FamilyPageControllerImp>(builder: (controller) {
                   return ListView(
                     scrollDirection: Axis.horizontal,
                     children: [
                       ...List.generate(
-                        controller.cities.length,
+                        controller.returnCitiesLength(),
                         (index) {
                           return Container(
                             margin: const EdgeInsets.all(5),
@@ -76,7 +76,7 @@ class FamilyAppBar extends StatelessWidget {
                                   width: 2,
                                   color: controller.cityChoosen == index
                                       ? AppColor.primaryColor
-                                      : AppColor.primaryColor.withOpacity(0),
+                                      : AppColor.primaryColor.withAlpha(0),
                                 ),
                               ),
                             ),
@@ -92,6 +92,13 @@ class FamilyAppBar extends StatelessWidget {
                             ),
                           );
                         },
+                      ),
+                      IconButton(
+                        icon: const Icon(
+                          Icons.arrow_forward_ios_rounded,
+                          color: AppColor.primaryColor,
+                        ),
+                        onPressed: () => controller.goToCitiesPages(),
                       ),
                     ],
                   );

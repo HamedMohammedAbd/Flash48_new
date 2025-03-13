@@ -26,25 +26,27 @@ class CardsPages extends GetView<PayCardsControllerImp> {
         ),
       ),
       body: getUserType() == "1"
-          ? ListView.builder(
-              itemCount: controller.cards.length,
-              padding: EdgeInsets.symmetric(
-                horizontal: width(13),
-              ),
-              itemBuilder: (context, index) {
-                String title = controller.cards[index]["title"];
-                int price = controller.cards[index]["price"];
-                int time = controller.cards[index]["time"];
-                List<dynamic> subtitle = controller.cards[index]["subtitle"];
-                return CardDesign(
-                  onPressed: () => controller.goToCardDetailsPage(title),
-                  price: price,
-                  subtitle: subtitle,
-                  time: time,
-                  title: title,
-                );
-              },
-            )
+          ? GetBuilder<PayCardsControllerImp>(builder: (controller) {
+              return ListView.builder(
+                itemCount: controller.cards.length,
+                padding: EdgeInsets.symmetric(
+                  horizontal: width(13),
+                ),
+                itemBuilder: (context, index) {
+                  String title = controller.cards[index].name!;
+                  double price = double.parse(controller.cards[index].price!);
+                  int time = controller.cards[index].duration!;
+                  String subtitle = controller.cards[index].details!;
+                  return CardDesign(
+                    onPressed: () => controller.goToCardDetailsPage(title),
+                    price: price,
+                    subtitle: subtitle,
+                    time: time,
+                    title: title,
+                  );
+                },
+              );
+            })
           : Padding(
               padding: const EdgeInsets.all(20),
               child: Center(

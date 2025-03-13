@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:test_test/core/function/height.dart';
 import 'package:flutter/material.dart';
 
@@ -42,11 +43,20 @@ class SearchTopDesign extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Image.asset(
-              image,
-              color: AppColor.primaryColor,
+            CachedNetworkImage(
+              imageUrl: image,
+              // color: AppColor.primaryColor,
               width: width(17.73),
+              height: width(17.73),
+              placeholder: (context, url) => const CircularProgressIndicator(),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
+            // Image.network(
+            //   image,
+            //   color: AppColor.primaryColor,
+            //   width: width(17.73),
+            //   height: width(17.73),
+            // ),
             Expanded(
               child: FittedBox(
                   child: Row(

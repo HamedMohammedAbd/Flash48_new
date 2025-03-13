@@ -1,4 +1,5 @@
 import 'package:test_test/controller/home_controller/main_home_controller.dart';
+import 'package:test_test/core/constant/app_Api.dart';
 import 'package:test_test/core/constant/app_image.dart';
 import 'package:test_test/core/function/height.dart';
 import 'package:test_test/core/function/width.dart';
@@ -78,22 +79,25 @@ class HomeAppBar extends GetView<MainHomeControllerImp> {
             SizedBox(
               height: height(100),
             ),
-            SizedBox(
-              height: height(15),
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: controller.activities.length,
-                itemBuilder: (context, index) {
-                  String image = controller.activities[index]["image"]!;
-                  String text = controller.activities[index]["text"]!;
-                  return SearchTopDesign(
-                    text: text,
-                    image: image,
-                    onTap: () => controller.goToOffersPage(text),
-                  );
-                },
-              ),
-            ),
+            GetBuilder<MainHomeControllerImp>(builder: (controller) {
+              return SizedBox(
+                height: height(15),
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: controller.activities.length,
+                  itemBuilder: (context, index) {
+                    String image = controller.activities[index].image!;
+                    String text = controller.activities[index].name!;
+                    return SearchTopDesign(
+                      text: text,
+                      image:
+                          "${AppApi.route}/storage/uploads/activities/$image",
+                      onTap: () => controller.goToOffersPage(text),
+                    );
+                  },
+                ),
+              );
+            }),
           ],
         ),
       ),

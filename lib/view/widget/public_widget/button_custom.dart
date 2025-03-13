@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../../core/constant/app_color.dart';
 
 class ButtonCustom extends StatelessWidget {
-  final Color? buttonColor, textColor;
+  final Color? buttonColor, textColor, imageColor;
   final String text;
   final double? textSize, height, width, imageWidth, imageHeight, raduis;
   final bool? isImage;
@@ -25,6 +25,7 @@ class ButtonCustom extends StatelessWidget {
     this.imageWidth,
     this.imageHeight,
     this.raduis,
+    this.imageColor = AppColor.whiteColor,
   });
 
   @override
@@ -52,7 +53,7 @@ class ButtonCustom extends StatelessWidget {
                       imageName!,
                       width: imageWidth,
                       height: imageHeight,
-                      color: AppColor.whiteColor,
+                      color: imageColor,
                     ),
               SizedBox(
                 width: isImage == null ? 0 : Get.width / 40,

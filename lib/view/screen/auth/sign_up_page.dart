@@ -88,6 +88,14 @@ class SignUpPage extends GetView<SignupPageControllerImp> {
                             controller: controller.phoneController,
                             hintText: 'الهاتف',
                             icon: Icons.phone_android,
+                            validator: (value) {
+                              return validationFunction(
+                                max: 30,
+                                min: 3,
+                                type: "phone",
+                                value: value!,
+                              );
+                            },
                           )
                         : Container(),
                     controller.isAdmin
@@ -97,6 +105,14 @@ class SignUpPage extends GetView<SignupPageControllerImp> {
                             icon: Icons.phone_android,
                             isImage: true,
                             image: AppImage.addActivityImage,
+                            validator: (value) {
+                              return validationFunction(
+                                max: 30,
+                                min: 3,
+                                type: "username",
+                                value: value!,
+                              );
+                            },
                             onChanged: (value) => controller.onChange(value),
                           )
                         : Container(),

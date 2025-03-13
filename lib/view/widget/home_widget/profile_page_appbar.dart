@@ -10,7 +10,7 @@ import '../../../core/constant/app_color.dart';
 import '../../../core/constant/app_font_size.dart';
 import '../../../core/constant/app_image.dart';
 import '../../../core/function/width.dart';
-import '../public_widget/text_custom.dart';
+// import '../public_widget/text_custom.dart';
 
 class ProfilePageAppbar extends StatelessWidget {
   final bool? isEdit, isBack;
@@ -106,6 +106,7 @@ class ProfilePageAppbar extends StatelessWidget {
             left: 0,
             right: 0,
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Stack(
                   alignment: Alignment.center,
@@ -158,8 +159,8 @@ class ProfilePageAppbar extends StatelessWidget {
                         : Container(),
                   ],
                 ),
-                TextCustom(text: name ?? ""),
-                TextCustom(text: email ?? ""),
+                // TextCustom(text: name ?? ""),
+                // TextCustom(text: email ?? ""),
               ],
             ),
           ),

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:test_test/core/class/status_request.dart';
 import 'package:test_test/core/constant/app_route.dart';
 import 'package:test_test/data/data_source/remote/get_data.dart';

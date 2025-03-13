@@ -130,7 +130,9 @@ class OffersDesign extends StatelessWidget {
                                 ),
                                 Expanded(
                                   child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 9.0,
+                                    ),
                                     child: Row(
                                       children: [
                                         TextCustom(

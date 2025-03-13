@@ -1,5 +1,8 @@
+// ignore_for_file: avoid_print
+
 import 'dart:math';
 
+import 'package:test_test/core/constant/app_Api.dart';
 import 'package:test_test/data/data_source/remote/get_data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,6 +10,7 @@ import 'package:get/get.dart';
 import '../../core/class/status_request.dart';
 import '../../core/constant/app_route.dart';
 import '../../core/function/get_user_type.dart';
+import '../../core/function/handling_data.dart';
 import '../../core/function/storage_user_data.dart';
 import '../../data/model/admin_user_model.dart';
 import '../../services/my_service.dart';
@@ -107,44 +111,46 @@ class SignupPageControllerImp extends SignupPageController {
   @override
   addUser() async {
     createVerifyCode();
-    // statusRequest = StatusRequest.loading;
-    // var response = await getDataRequest.getData(
-    //   map: getUserType() == "1"
-    //       ? {
-    //           "user_name": usernameController.text,
-    //           "user_email": emailController.text,
-    //           "user_password": passwordController.text,
-    //           "user_phone": phoneController.text,
-    //           "user_active": activeController.text,
-    //         }
-    //       : {
-    //           "user_name": usernameController.text,
-    //           "user_email": emailController.text,
-    //           "user_password": passwordController.text,
-    //         },
-    //   api: getUserType() == "1" ? AppApi.AdminSignup : AppApi.normalUserSIgnUp,
-    // );
-    // statusRequest = handlingData(response);
-    // if (statusRequest == StatusRequest.success) {
-    //   if (response["userFound"] == "user found") {
-    //     print("user found ");
-    //   }
-    //   if (response["status"] == "successAdd") {
-    //     print("add user success");
-    //     createVerifyCode();
-    //     // List items = response["data"];
+    statusRequest = StatusRequest.loading;
+    var response = await getDataRequest.getData(
+      map: getUserType() == "1"
+          ? {
+              "username": usernameController.text,
+              "email": emailController.text,
+              "user_password": passwordController.text,
+              "phone": phoneController.text,
+              "active": activeController.text,
+              "type": "seller",
+            }
+          : {
+              "user_name": usernameController.text,
+              "user_email": emailController.text,
+              "user_password": passwordController.text,
+            },
+      //here we must edit data to signUp
+      api: AppApi.loginaAPI,
+    );
+    statusRequest = handlingData(response);
+    if (statusRequest == StatusRequest.success) {
+      if (response["userFound"] == "user found") {
+        print("user found ");
+      }
+      if (response["status"] == "successAdd") {
+        print("add user success");
+        createVerifyCode();
+        // List items = response["data"];
 
-    //     statusRequest = StatusRequest.success;
-    //   } else if (response["status"] == "failureAdd") {
-    //     print("add user failure");
-    //     statusRequest = StatusRequest.none;
-    //   } else {
-    //     statusRequest = StatusRequest.failure;
-    //   }
-    // } else {
-    //   statusRequest = StatusRequest.serverFailure;
-    // }
-    // update();
+        statusRequest = StatusRequest.success;
+      } else if (response["status"] == "failureAdd") {
+        print("add user failure");
+        statusRequest = StatusRequest.none;
+      } else {
+        statusRequest = StatusRequest.failure;
+      }
+    } else {
+      statusRequest = StatusRequest.serverFailure;
+    }
+    update();
   }
 
   @override
@@ -165,9 +171,9 @@ class SignupPageControllerImp extends SignupPageController {
         "sign": 1,
       },
     );
-    late AdminUserModel adminUserModel;
+    late AdminUserModels adminUserModel;
 
-    adminUserModel = AdminUserModel.fromJson({
+    adminUserModel = AdminUserModels.fromJson({
       "user_id": 1,
       "user_name": "admintest",
       "user_type":

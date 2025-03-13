@@ -62,4 +62,5 @@ class AppImage {
   static const String star = "${imagePath}star.png";
   static const String confirm = "${imagePath}confirm.png";
   static const String appbar = "${imagePath}appbar.png";
+  static const String calenar = "${imagePath}calenar.png";
 }

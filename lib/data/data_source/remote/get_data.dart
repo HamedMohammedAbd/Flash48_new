@@ -1,20 +1,34 @@
+// // ignore_for_file: avoid_print
+
 // ignore_for_file: avoid_print
 
 import '../../../core/class/curd.dart';
 
 class GetData {
-  Curd curd;
+  final Curd curd;
 
   GetData(this.curd);
 
-  getData({required Map<String, String> map, required String api}) async {
-    print("========before===");
-    var response = await curd.postData(
-      api,
-      map,
+  Future<dynamic> getData({
+    required Map<String, dynamic> map,
+    required String api,
+    bool reqType = true,
+    bool? isput,
+    Map<String, String>? header,
+  }) async {
+    final response = await curd.postData(
+      data: map,
+      link: api,
+      isPost: reqType,
+      isPut: isput,
+      headers: header,
     );
-    print(response.toString());
-    print("=======after====");
-    return response.fold((l) => l, (r) => r);
+
+    print(response);
+
+    return response.fold(
+      (failure) => failure,
+      (success) => success,
+    );
   }
 }

@@ -13,12 +13,16 @@ class StaticAppbar extends StatelessWidget {
   final void Function()? onTap;
   final bool isBack;
   final bool isSearch;
+  final void Function(String)? onChanged;
+  final TextEditingController? controller;
   const StaticAppbar({
     super.key,
     required this.text,
     this.onTap,
     this.isBack = true,
     this.isSearch = false,
+    this.onChanged,
+    this.controller,
   });
 
   @override
@@ -31,10 +35,10 @@ class StaticAppbar extends StatelessWidget {
         height: AppFontSize.sizeAppBar,
         width: width(1),
         decoration: const BoxDecoration(
-          // borderRadius: BorderRadius.only(
-          //   bottomLeft: Radius.circular(20),
-          //   bottomRight: Radius.circular(20),
-          // ),
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(20),
+            bottomRight: Radius.circular(20),
+          ),
           gradient: LinearGradient(
             begin: Alignment(0, -1),
             end: Alignment(-0.003, 1),
@@ -75,8 +79,10 @@ class StaticAppbar extends StatelessWidget {
                         height: height(31),
                         child: Center(
                           child: TextFormField(
+                            controller: controller,
                             cursorColor: AppColor.primaryColor,
                             cursorHeight: height(55),
+                            onChanged: onChanged,
                             decoration: InputDecoration(
                               hintText: "بحث",
                               prefixIcon: Icon(
@@ -105,7 +111,6 @@ class StaticAppbar extends StatelessWidget {
                     )
                   : const SizedBox(),
               isSearch ? const Spacer() : Container(),
-
             ],
           ),
         ),

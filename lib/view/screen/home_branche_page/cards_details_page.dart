@@ -19,7 +19,12 @@ class CardsDetailsPage extends GetView<CardsDetailsPageControllerImp> {
       ),
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(AppFontSize.sizeAppBar),
-        child: StaticAppbar(text: "تفاصيل بطاقة \n  ${controller.title}"),
+        child: StaticAppbar(text: "تفاصيل باقة \n  ${controller.title}"),
+      ),
+      body: ListView(
+        children: const [
+          /// here we must add card details
+        ],
       ),
     );
   }

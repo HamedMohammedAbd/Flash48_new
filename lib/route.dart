@@ -8,6 +8,7 @@ import 'view/screen/auth/sign_up_page.dart';
 import 'view/screen/auth/verifiy_code_page.dart';
 import 'view/screen/home_branche_page/add_offers_page.dart';
 import 'view/screen/home_branche_page/cards_page.dart';
+import 'view/screen/home_branche_page/cities_pages.dart';
 import 'view/screen/home_branche_page/edit_personal_data.dart';
 import 'view/screen/home_branche_page/menu_page.dart';
 import 'view/screen/home_branche_page/offers_page.dart';
@@ -22,9 +23,9 @@ import 'view/screen/home_branche_page/logout_page.dart';
 import 'view/screen/home_branche_page/notification_page.dart';
 import 'view/screen/home_branche_page/product_details.dart';
 import 'view/screen/home_branche_page/rating_page.dart';
+import 'view/screen/products/add_new_product.dart';
 
 List<GetPage<dynamic>>? routes = <GetPage<dynamic>>[
-
   GetPage<dynamic>(
     name: "/",
     page: () => const ChooseUserType(),
@@ -113,5 +114,13 @@ List<GetPage<dynamic>>? routes = <GetPage<dynamic>>[
   GetPage<dynamic>(
     name: AppRoute.addOffers,
     page: () => const AddOffersPage(),
+  ),
+  GetPage<dynamic>(
+    name: AppRoute.addNewProduct,
+    page: () => const AddNewProduct(),
+  ),
+  GetPage<dynamic>(
+    name: AppRoute.citiesPages,
+    page: () => const CitiesPages(),
   ),
 ];

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:test_test/core/constant/app_color.dart';
 import 'package:test_test/core/constant/app_font_size.dart';
 import 'package:test_test/core/function/height.dart';

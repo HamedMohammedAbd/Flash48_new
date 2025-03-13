@@ -21,7 +21,7 @@ class RatingPage extends GetView<RatingPageControllerImp> {
       floatingActionButton: Container(
         decoration: BoxDecoration(
           backgroundBlendMode: BlendMode.darken,
-          color: AppColor.grayColor.withOpacity(0),
+          color: AppColor.grayColor.withAlpha(0),
         ),
         padding: EdgeInsets.symmetric(
           horizontal: width(19.5),
